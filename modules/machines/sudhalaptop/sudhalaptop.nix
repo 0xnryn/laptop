@@ -7,6 +7,11 @@ let
   };
 in
 {
+  
+  imports = [
+    inputs.cosmic.flakeModules.default
+  ];
+
   configurations.secrets.identities."sudhalaptoptpm" = {
     publicKey = "age1tag1qvyc9uwdu3d9jea3pdj53uak658zwe5mlfnk2gcc9acd0fu3s5hf5yf3e3k";
     tags = [ "sudhalaptopssh" "sudhalaptoptpm" ]; 
