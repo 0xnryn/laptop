@@ -13,18 +13,22 @@ in
   ];
 
   configurations.secrets.identities."sudhalaptoptpm" = {
-    publicKey = "age1tag1qvyc9uwdu3d9jea3pdj53uak658zwe5mlfnk2gcc9acd0fu3s5hf5yf3e3k";
-    tags = [ "sudhalaptopssh" "sudhalaptoptpm" ]; 
+    publicKey = "age1tag1qv37tamvtdydm3m3zg9g6k8st3m5nvggacy2h6wkha44sqgl944cyw3mek9";
+    tags = [ "sudhalaptoptpm"  ]; 
   };
 
   configurations.secrets.identities."sudhalaptopssh" = {
     publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDOJRuZDBhEn9Q37C0qZ8jMo6EMrTe7bzTT4hKcBMBN9 sudhalaptop";
     tags = [ "sudhalaptopssh" ]; 
   };
-  
-  configurations.secrets.policies = {
-    "modules/machines/sudhalaptop/secrets/sudhalaptopssh.age" = {
-      requiredTags = [ "root" "sudhalaptoptpm" ];
+
+  configurations.secrets.policyGroups = {
+    "sudhalaptopssh" = {
+      basePath = "modules/machines/laptop/secrets";
+      files = {
+        "sudhalaptoptpm.age" = [ "root" ];
+        "sudhalaptopssh.age" = [ "sudhalaptoptpm" ];
+      };
     };
   };
   
@@ -35,24 +39,20 @@ in
         age.identityPaths = [ 
           "/etc/sudhalaptoptpm"
         ];
-        age.secrets."sudhalaptopssh" = {
-          file = ./secrets/sudhalaptopssh.age;
+        cosmicage.secrets."sudhalaptopssh" = {
+          file = "sudhalaptopssh.age";
           path = "/etc/ssh/ssh_host_ed25519_key"; 
           mode = "0600";
           owner = "root";
         };
         imports = with config.flake.nixosModules; [ 
           inputs.agenix.nixosModules.default
+          cosmicage
           laptop
           system
-          ollama_cud          
-a
-          openwebui 
-          docker
-          sudha
           plasma
+          sudha
         ];
-        
       }; 
     }; 
   };
@@ -61,7 +61,6 @@ a
     "sudha@laptop" = with config.flake.homeModules; mkUser "laptop" [
       sudhacli
       sudhagui
-      helix
       zen-browser
     ];
   };  

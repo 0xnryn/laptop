@@ -3,10 +3,12 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     cosmic = {
-      url = "github:0xnryn/cosmic";
+      # url = "github:0xnryn/cosmic";
+      url = "path:/home/sudha/cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-parts = {

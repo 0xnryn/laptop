@@ -1,4 +1,8 @@
 { inputs, lib, config, ... }:{
+
+  imports = [
+    inputs.cosmic.flakeModules.default
+  ];
     
   configurations.secrets.identities."root" = {
     publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJQgPPuvnBiaK6z3ADBqY5l11oB6HHwm1rtUAEusMSlx root";
@@ -10,23 +14,28 @@
     tags = [ "sudhassh" ];
   };
 
-  # Protect your personal secrets
-  configurations.secrets.policies = {
-    "modules/users/sudha/secrets/sudhassh.age".requiredTags = [ "root" "sudhalaptopssh" ];
-    "modules/users/sudha/secrets/sudhauserpass.age".requiredTags = [ "root" "sudhalaptopssh" "sudhassh" ];
+  configurations.secrets.policyGroups = {
+    "sudha" = {
+      basePath = "modules/users/sudha/secrets";
+      files = {
+        "sudhassh.age" = [ "sudhalaptopssh" "sudhalaptoptpm" ];
+        "sudhauserpass.age" = [ "sudhassh" "sudhalaptoptpm" ];
+      };
+    };
   };
 
   flake.nixosModules.sudha = { config, pkgs, lib, ... }: {
     
-    age.secrets."sshsudha" = {
-      file = ./secrets/sudhassh.age;
+    cosmicage.secrets."sudhassh" = {
+      file = "sudhassh.age";
       mode = "0600";
       owner = "sudha";
+      group = "users";
       path = "/home/sudha/.ssh/id_ed25519";
     };
     
-    age.secrets."sudhauserpass" = {
-      file = ./secrets/sudhauserpass.age;
+    cosmicage.secrets."sudhauserpass" = {
+      file = "sudhauserpass.age";
     };
     
     users.users.sudha = {
@@ -85,8 +94,7 @@
       enableDefaultConfig = false;
       settings = {
         "*" = {
-          IdentityFile = osConfig.age.secrets."sshsudha".path;
-          # restore any defaults you want to keep
+          IdentityFile = osConfig.age.secrets."sudhassh".path;
           AddKeysToAgent = "yes";
           ServerAliveInterval = 60;
         };
@@ -96,31 +104,7 @@
   
   flake.homeModules.sudhagui = { pkgs, ... }:{
       home.packages = with pkgs; [
-        # THE GNOME STACK
-        nautilus       
-        sushi          
-        loupe          
-        evince         
-        baobab         
-        
-        # APPLICATIONS
-        telegram-desktop
-        steam-run
-        prusa-slicer
-        libreoffice-fresh
         zed-editor
-        unrar
-        affine
-        vlc
-        discord
-        jdk25
-        orca-slicer
-        obs-studio
-        pavucontrol
-  
-        # HARDWARE & SHELL DEPENDENCIES
-        pamixer            # FIX: Required for Volume keys
-        brightnessctl      # FIX: Required for Brightness keys
       ];
     };
 }
