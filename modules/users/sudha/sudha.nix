@@ -3,44 +3,26 @@
   imports = [
     inputs.cosmic.flakeModules.default
   ];
-    
-  configurations.secrets.identities."root" = {
-    publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJQgPPuvnBiaK6z3ADBqY5l11oB6HHwm1rtUAEusMSlx root";
-    tags = [ "root" ];
-  };
-
-  configurations.secrets.identities."sudhassh" = {
-    publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAPOVwS487rUg6zfTKdeRILuaF2MAkj+0Hb+VybiY/MK sudha";
-    tags = [ "sudhassh" ];
-  };
-
-  configurations.secrets.policyGroups = {
-    "sudha" = {
-      basePath = "modules/users/sudha/secrets";
-      files = {
-        "sudhassh.age" = [ "sudhalaptopssh" "sudhalaptoptpm" ];
-        "sudhauserpass.age" = [ "sudhassh" "sudhalaptoptpm" ];
-      };
-    };
-  };
 
   flake.nixosModules.sudha = { config, pkgs, lib, ... }: {
     
-    cosmicage.secrets."sudhassh" = {
-      file = "sudhassh.age";
+    # Switched to native age.secrets and provided the explicit path
+    age.secrets."sudhassh" = {
+      file = "${inputs.self}/modules/users/sudha/secrets/sudhassh.age";
       mode = "0600";
       owner = "sudha";
       group = "users";
       path = "/home/sudha/.ssh/id_ed25519";
     };
     
-    cosmicage.secrets."sudhauserpass" = {
-      file = "sudhauserpass.age";
+    age.secrets."sudhauserpass" = {
+      file = "${inputs.self}/modules/users/sudha/secrets/sudhauserpass.age";
     };
     
     users.users.sudha = {
       isNormalUser = true;
       extraGroups = [ "wheel" "dialout" ];
+      # This remains exactly the same!
       hashedPasswordFile = config.age.secrets."sudhauserpass".path;
     };
   };
@@ -51,33 +33,33 @@
     home.homeDirectory = "/home/sudha";
     home.stateVersion = "26.05";
     programs.home-manager.enable = true;
+    
     home.packages = with pkgs; [
-      tree
-      util-linux
-      wget
-      curl
-      git
-      gptfdisk
-      htop
-      fastfetch
+      tree 
+      util-linux 
+      wget 
+      curl 
+      git 
+      gptfdisk 
+      htop 
+      fastfetch 
       android-tools
-      sops
-      pciutils
-      mosquitto
-      nixd
-      nil
-      cloudflared
-      cachix
-      python3
+      pciutils 
+      mosquitto 
+      nixd 
+      nil 
+      cloudflared 
+      cachix 
+      python3 
       espeak-ng
-      uv
+      uv 
       pulseaudio 
-      alsa-utils
-      pipewire
-      netcat-gnu
-      unrar
-      gh
-      jq
+      alsa-utils 
+      pipewire 
+      netcat-gnu 
+      unrar 
+      gh 
+      jq 
       pwgen
     ];
     
@@ -94,6 +76,7 @@
       enableDefaultConfig = false;
       settings = {
         "*" = {
+          # This continues to work flawlessly because it reads the native age config
           IdentityFile = osConfig.age.secrets."sudhassh".path;
           AddKeysToAgent = "yes";
           ServerAliveInterval = 60;
@@ -102,7 +85,6 @@
     };
   };
   
-  # Add 'config' to the arguments here!
   flake.homeModules.sudhagui = { config, pkgs, lib, ... }:{
     home.packages = with pkgs; [
       zed-editor

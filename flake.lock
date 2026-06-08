@@ -80,17 +80,14 @@
         ]
       },
       "locked": {
-        "lastModified": 1780890227,
-        "narHash": "sha256-GK2jmri307rXYsQICZS3gcXp/js9jcrwtPy8enQ6SgE=",
-        "owner": "0xnryn",
-        "repo": "cosmic",
-        "rev": "3d873ef036284568ef750a2cb32f0ede745d9631",
-        "type": "github"
+        "lastModified": 1780918016,
+        "narHash": "sha256-dn67LKFOckdenjfRDR/aZPR+ybYzwqxAyM4XSne5h6U=",
+        "path": "/home/sudha/cosmic/cosmic",
+        "type": "path"
       },
       "original": {
-        "owner": "0xnryn",
-        "repo": "cosmic",
-        "type": "github"
+        "path": "/home/sudha/cosmic/cosmic",
+        "type": "path"
       }
     },
     "cosmic_2": {
@@ -104,11 +101,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780846544,
-        "narHash": "sha256-P6JDhlEo1mJ/GXVOUkasm6/c6BH9MGj/4nT4HfXqSPM=",
+        "lastModified": 1780918001,
+        "narHash": "sha256-eyDjOxBPPLqTAjbmfE7JrtIf8x0Ff4eraR7dwobqJIc=",
         "owner": "0xnryn",
         "repo": "cosmic",
-        "rev": "fd432d828626879899a4cf3cca000f8775508ce2",
+        "rev": "7f32ffb23010040dd8cf79eec8fc173ff829d24b",
         "type": "github"
       },
       "original": {
@@ -199,11 +196,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780290312,
-        "narHash": "sha256-eTAlX0CwgB84Ts3GaBd944A3DRXVMzgA0EqroZBISUo=",
+        "lastModified": 1780894562,
+        "narHash": "sha256-c3430xwxwhHipl3jigUGMMBfpaMylDqytW/kdmB3ZGs=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "115e5211780054d8a890b41f0b7734cafad54dfe",
+        "rev": "24fed06cac83bcc44ac8efbb57cab1a82fa0bedc",
         "type": "github"
       },
       "original": {
@@ -220,11 +217,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780290312,
-        "narHash": "sha256-eTAlX0CwgB84Ts3GaBd944A3DRXVMzgA0EqroZBISUo=",
+        "lastModified": 1780894562,
+        "narHash": "sha256-c3430xwxwhHipl3jigUGMMBfpaMylDqytW/kdmB3ZGs=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "115e5211780054d8a890b41f0b7734cafad54dfe",
+        "rev": "24fed06cac83bcc44ac8efbb57cab1a82fa0bedc",
         "type": "github"
       },
       "original": {
@@ -514,11 +511,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780679734,
-        "narHash": "sha256-KmRNvpNOb7QEORa06bVgjW9kITcx0VhsI7w0vhmZyD8=",
+        "lastModified": 1780885330,
+        "narHash": "sha256-aMA5oAq2Iv467U9s8YOb50DYQT9w0WJbyWqwlzHuLMs=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "b2b7db486e06e098711dc291bb25db82850e1d16",
+        "rev": "4fe95527cbe952713318ada8a4d122e1a6ab120f",
         "type": "github"
       },
       "original": {
@@ -580,11 +577,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780679734,
-        "narHash": "sha256-KmRNvpNOb7QEORa06bVgjW9kITcx0VhsI7w0vhmZyD8=",
+        "lastModified": 1780885330,
+        "narHash": "sha256-aMA5oAq2Iv467U9s8YOb50DYQT9w0WJbyWqwlzHuLMs=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "b2b7db486e06e098711dc291bb25db82850e1d16",
+        "rev": "4fe95527cbe952713318ada8a4d122e1a6ab120f",
         "type": "github"
       },
       "original": {
@@ -769,11 +766,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1780243769,
-        "narHash": "sha256-x5UQuRsH3MqI0U9afaXSNqzTPSeZlRLvFAav2Ux1pNw=",
+        "lastModified": 1780749050,
+        "narHash": "sha256-3av0pIjlOWQ6rDbNOmpUSvbNnJkGORQKKjb4LtCZsIY=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "331800de5053fcebacf6813adb5db9c9dca22a0c",
+        "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
         "type": "github"
       },
       "original": {
@@ -820,17 +817,14 @@
         "zen-browser": "zen-browser"
       },
       "locked": {
-        "lastModified": 1780890270,
-        "narHash": "sha256-8zBr1e3r1o8Ye8N2IidGveugZDxChiwF9asRgByjbQ0=",
-        "owner": "0xnryn",
-        "repo": "opinions",
-        "rev": "67c68bc3c2ba8f6b229ee82883cb20ad623a7f62",
-        "type": "github"
+        "lastModified": 1780918097,
+        "narHash": "sha256-5q4x+Gd6jAVdyFaNYrIFqjVJkPRwO5Wj0WOqhQbmpw0=",
+        "path": "/home/sudha/cosmic/opinions",
+        "type": "path"
       },
       "original": {
-        "owner": "0xnryn",
-        "repo": "opinions",
-        "type": "github"
+        "path": "/home/sudha/cosmic/opinions",
+        "type": "path"
       }
     },
     "plasma-manager": {
