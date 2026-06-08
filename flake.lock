@@ -80,11 +80,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780846544,
-        "narHash": "sha256-P6JDhlEo1mJ/GXVOUkasm6/c6BH9MGj/4nT4HfXqSPM=",
+        "lastModified": 1780890227,
+        "narHash": "sha256-GK2jmri307rXYsQICZS3gcXp/js9jcrwtPy8enQ6SgE=",
         "owner": "0xnryn",
         "repo": "cosmic",
-        "rev": "fd432d828626879899a4cf3cca000f8775508ce2",
+        "rev": "3d873ef036284568ef750a2cb32f0ede745d9631",
         "type": "github"
       },
       "original": {
@@ -820,11 +820,11 @@
         "zen-browser": "zen-browser"
       },
       "locked": {
-        "lastModified": 1780856700,
-        "narHash": "sha256-B8+LSdDC2hjL1rjll31T2kNyxo1hAeD+H060T4GNhp8=",
+        "lastModified": 1780890270,
+        "narHash": "sha256-8zBr1e3r1o8Ye8N2IidGveugZDxChiwF9asRgByjbQ0=",
         "owner": "0xnryn",
         "repo": "opinions",
-        "rev": "e86842ac113cfb1dcdce4c3e01c16bdae6997b78",
+        "rev": "67c68bc3c2ba8f6b229ee82883cb20ad623a7f62",
         "type": "github"
       },
       "original": {

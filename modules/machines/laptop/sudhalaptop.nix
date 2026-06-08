@@ -1,11 +1,4 @@
 { pkgs, config, inputs, ... }:
-let
-  mkUser = hostname: modules: {
-    pkgs = inputs.nixpkgs.legacyPackages.${config.configurations.nixos.${hostname}.system};
-    module = { imports = modules; };
-    osConfig = config.flake.nixosConfigurations.${hostname}.config;
-  };
-in
 {
   
   imports = [
@@ -27,6 +20,7 @@ in
     files = {
       "sudhalaptoptpm.age" = [ "root" ];
       "sudhalaptopssh.age" = [ "sudhalaptoptpm" ];
+      "gitaccesstokens.age" = [ "sudhalaptoptpm" "sudhalaptopssh" ];
     };
   };
   
@@ -43,12 +37,14 @@ in
           mode = "0600";
           owner = "root";
         };
+        #cosmicage.secrets."git-access-tokens".file = "gitaccesstokens.age";
         imports = 
         with inputs.opinions.nixosModules; 
         with config.flake.nixosModules;    
         [ 
           inputs.agenix.nixosModules.default
           cosmicage
+          #git-access-tokens
           laptop
           system
           plasma
@@ -59,15 +55,17 @@ in
   };
 
   configurations.home = {
-    "sudha@laptop" = 
-    with config.flake.homeModules;
-    with inputs.opinions.homeModules; 
-    mkUser "laptop" [
-      sudhacli
-      sudhagui
-      zen-browser
-      helium-browser
-      plasma
-    ];
-  };  
+      "sudha@laptop" = {
+        hostName = "laptop";
+        modules = 
+          with config.flake.homeModules;
+          with inputs.opinions.homeModules; 
+          [
+            sudhacli
+            sudhagui
+            plasma
+            helium-browser
+          ];
+      };
+    }; 
 }
