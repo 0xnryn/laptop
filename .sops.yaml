@@ -2,7 +2,8 @@
 keys:
   - &admin "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJQgPPuvnBiaK6z3ADBqY5l11oB6HHwm1rtUAEusMSlx root"
   - &sudhassh "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAPOVwS487rUg6zfTKdeRILuaF2MAkj+0Hb+VybiY/MK sudha"
-  - &sudhalaptopssh "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDOJRuZDBhEn9Q37C0qZ8jMo6EMrTe7bzTT4hKcBMBN9 sudhalaptop"
+  - &sudhalaptopssh "age1vqs0tzjk64pk80p89mewvagd50wjanhj2h80hnaa4ve2as7jq3wqmsxp8d"
+  - &sudhalaptoptpm "age1tag1qv37tamvtdydm3m3zg9g6k8st3m5nvggacy2h6wkha44sqgl944cyw3mek9"
 
 creation_rules:
   # --- MACHINE: LAPTOP ---
@@ -11,6 +12,7 @@ creation_rules:
       - age:
           - *admin
           - *sudhalaptopssh
+          - *sudhalaptoptpm
 
   # --- USER: SUDHA ---
   - path_regex: modules/users/sudha/sudhasecrets.yaml$

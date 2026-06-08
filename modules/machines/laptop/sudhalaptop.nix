@@ -1,4 +1,10 @@
-# sudo EDITOR=nano SOPS_AGE_KEY_FILE=/etc/sudhalaptoptpm nix run nixpkgs#sops -- modules/users/sudha/secrets.yaml
+# # Start the agent if it isn't running
+# eval $(ssh-agent -s)
+# # Add your password-protected root SSH key
+# ssh-add secrets/root
+# SOPS_AGE_SSH_PRIVATE_KEY_FILE=secrets/root sops updatekeys modules/machines/laptop/laptopsecrets.yaml
+# SOPS_AGE_SSH_PRIVATE_KEY_FILE=secrets/root sops modules/machines/laptop/laptopsecrets.yaml
+# 
 { pkgs, config, inputs, ... }:
 {
   imports = [
@@ -9,15 +15,16 @@
     "laptop" = {
       system = "x86_64-linux";
       module = {
-        sops.secrets."git-access-tokens" = {
-          sopsFile = "${inputs.self}/modules/machines/laptop/laptopsecrets.yaml"; 
-          mode = "0440";
-          owner = "root"; 
-          group = "wheel";
-        };
-        nix.extraOptions = ''
-          !include /run/secrets/git-access-tokens
-        '';
+        # sops.age.keyFile = "/etc/ssh/ssh_host_ed25519_key";
+        # sops.secrets."git-access-tokens" = {
+        #   sopsFile = "${inputs.self}/modules/machines/laptop/laptopsecrets.yaml"; 
+        #   mode = "0440";
+        #   owner = "root"; 
+        #   group = "wheel";
+        # };
+        # nix.extraOptions = ''
+        #   !include /run/secrets/git-access-tokens
+        # '';
         imports = 
         with inputs.opinions.nixosModules; 
         with config.flake.nixosModules;    
