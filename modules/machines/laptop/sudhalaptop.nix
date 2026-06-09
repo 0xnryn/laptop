@@ -4,7 +4,9 @@
 # ssh-add secrets/root
 # SOPS_AGE_SSH_PRIVATE_KEY_FILE=secrets/root sops updatekeys modules/machines/laptop/laptopsecrets.yaml
 # SOPS_AGE_SSH_PRIVATE_KEY_FILE=secrets/root sops modules/machines/laptop/laptopsecrets.yaml
-# 
+# echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI..." | ssh-to-age\
+# Generate a native age identity
+# age-keygen -o ~/root.txt
 { pkgs, config, inputs, ... }:
 {
   imports = [

@@ -6,19 +6,19 @@
 
   flake.nixosModules.sudha = { config, pkgs, lib, ... }: {
     
-    sops.secrets."sudhassh" = {
-      sopsFile = "${inputs.self}/modules/users/sudha/sudhasecrets.yaml"; # <-- ADD THIS
-      owner = "sudha";
-      mode = "0400"; 
-    };
+    # sops.secrets."sudhassh" = {
+    #   sopsFile = "${inputs.self}/modules/users/sudha/sudhasecrets.yaml"; # <-- ADD THIS
+    #   owner = "sudha";
+    #   mode = "0400"; 
+    # };
     
-    sops.secrets."sudhauserpass" = {
-      sopsFile = "${inputs.self}/modules/users/sudha/sudhasecrets.yaml"; # <-- ADD THIS
-    };
+    # sops.secrets."sudhauserpass" = {
+    #   sopsFile = "${inputs.self}/modules/users/sudha/sudhasecrets.yaml"; # <-- ADD THIS
+    # };
     users.users.sudha = {
       isNormalUser = true;
       extraGroups = [ "wheel" "dialout" ];
-      hashedPasswordFile = config.sops.secrets."sudhauserpass".path;
+      # hashedPasswordFile = config.sops.secrets."sudhauserpass".path;
     };
   };
 
@@ -66,18 +66,18 @@
       };
     };
 
-    programs.ssh = {
-      enable = true;
-      enableDefaultConfig = false;
-      settings = {
-        "*" = {
-          # This continues to work flawlessly because it reads the native age config
-          IdentityFile = osConfig.sops.secrets."sudhassh".path;
-          AddKeysToAgent = "yes";
-          ServerAliveInterval = 60;
-        };
-      };
-    };
+    # programs.ssh = {
+    #   enable = true;
+    #   enableDefaultConfig = false;
+    #   settings = {
+    #     "*" = {
+    #       # This continues to work flawlessly because it reads the native age config
+    #       IdentityFile = osConfig.sops.secrets."sudhassh".path;
+    #       AddKeysToAgent = "yes";
+    #       ServerAliveInterval = 60;
+    #     };
+    #   };
+    # };
   };
   
   flake.homeModules.sudhagui = { config, pkgs, lib, ... }:{
