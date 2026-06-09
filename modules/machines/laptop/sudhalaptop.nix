@@ -1,12 +1,3 @@
-# # Start the agent if it isn't running
-# eval $(ssh-agent -s)
-# # Add your password-protected root SSH key
-# ssh-add secrets/root
-# SOPS_AGE_SSH_PRIVATE_KEY_FILE=secrets/root sops updatekeys modules/machines/laptop/laptopsecrets.yaml
-# SOPS_AGE_SSH_PRIVATE_KEY_FILE=secrets/root sops modules/machines/laptop/laptopsecrets.yaml
-# echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI..." | ssh-to-age\
-# Generate a native age identity
-# age-keygen -o ~/root.txt
 { pkgs, config, inputs, ... }:
 {
   imports = [
@@ -17,7 +8,20 @@
     "laptop" = {
       system = "x86_64-linux";
       module = {
-        # sops.age.keyFile = "/etc/ssh/ssh_host_ed25519_key";
+        environment.variables = {
+          EDITOR = "nano";
+          VISUAL = "nano"; 
+          SOPS_AGE_KEY_FILE = "/etc/laptopboot.txt"; 
+        };
+        sops.age.keyFile = "/etc/laptopboot.txt";
+        # Explicitly tell sops-nix where to put the key and link it
+        sops.secrets."ssh/ssh_host_ed25519_key" = {
+          sopsFile = "${inputs.self}/secrets/laptop.yaml";
+          format = "yaml";
+          path = "/etc/ssh/ssh_host_ed25519_key"; # This is the symlink location
+        };
+        
+        # If you need an RSA key as well, you must add it to laptopssh.yaml and define it here
         # sops.secrets."git-access-tokens" = {
         #   sopsFile = "${inputs.self}/modules/machines/laptop/laptopsecrets.yaml"; 
         #   mode = "0440";
