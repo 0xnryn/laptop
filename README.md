@@ -41,4 +41,12 @@ nix run nixpkgs#age -p -o key.txt.age key.txt
 # echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI..." | ssh-to-age\
 # Generate a native age identity
 # age-keygen -o ~/root.txt
+
+
+Architecture A: Yggdrasil OVER Tor (Ultimate Anonymity)
+In this setup, you run the Tor daemon on your laptop. You configure Yggdrasil to connect to other Yggdrasil nodes that are hosted as Tor Hidden Services (.onion addresses) via a local SOCKS5 proxy.
+
+What you achieve: You solve the "Public Peer knows my IP" problem without needing to buy your own VPS. The public Yggdrasil peer only sees traffic emerging from a random Tor exit node. Your physical location is mathematically severed from your Yggdrasil 200:: identity.
+
+The Cost (Extreme Latency): Tor routes your traffic through three random servers across the globe. Yggdrasil then does its own cryptographic tree-routing on top of that. If you ping an ALFIS domain, the packet might travel around the Earth three times before returning. You are looking at 1,000ms to 3,000ms (1-3 seconds) of latency per click. It is highly secure, but barely usable for web browsing.
  
