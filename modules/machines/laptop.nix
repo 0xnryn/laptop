@@ -15,6 +15,7 @@ flakeContext@{ inputs, ... }:
         time.timeZone = "Asia/Kolkata";
         i18n.defaultLocale = "en_US.UTF-8";
         console.keyMap = "us";
+        virtualisation.docker.enable = true;
         services = {
           printing.enable = true;
           openssh.enable = true;
@@ -34,6 +35,7 @@ flakeContext@{ inputs, ... }:
           age age-plugin-tpm android-tools
           bind
           cloudflared curl
+          droidcam
           git gptfdisk
           home-manager htop
           jq
@@ -41,12 +43,13 @@ flakeContext@{ inputs, ... }:
           pciutils
           sbctl sops ssh-to-age
           tcpdump tree
-          util-linux
+          util-linux unzip
           vim
           wget
           yggdrasil
           alfis-nogui
           alfis
+          docker
         ];
         environment.variables = {
           EDITOR = "nano"; VISUAL = "nano"; 
@@ -135,7 +138,7 @@ flakeContext@{ inputs, ... }:
         # '';
         users.users.sudha = {
           isNormalUser = true;
-          extraGroups = [ "wheel" "networkmanager" "dialout" ];          
+          extraGroups = [ "wheel" "networkmanager" "dialout" "docker" "adbusers"];          
           # hashedPasswordFile = config.sops.secrets."sudha-login-password".path;
         };
         

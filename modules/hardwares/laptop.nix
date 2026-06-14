@@ -51,8 +51,17 @@
         "nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod" "tpm_crb" "tpm_tis" 
       ];
       initrd.kernelModules = [ ];
-      kernelModules = [ "kvm-amd" ];
-      extraModulePackages = [ ];
+            
+      # 1. ADD "v4l2loopback" TO THIS LIST
+      kernelModules = [ "kvm-amd" "v4l2loopback" ]; 
+      
+      # 2. ADD THE LOOPBACK PACKAGE TO YOUR KERNEL
+      extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
+      
+      # 3. FORCE THE CREATION OF /dev/video9
+      extraModprobeConfig = ''
+        options v4l2loopback devices=1 video_nr=9 card_label="DroidCam Virtual Camera" exclusive_caps=1
+      '';
     };
 
     services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
