@@ -26,7 +26,6 @@ flakeContext@{ inputs, ... }:
           inputs.opinions.nixosModules.plasma
           inputs.opinions.nixosModules.sudha-yggdrasil
         ];
-        sops.age.keyFile = "/etc/${hostName}boot.txt";
         sops.secrets."ssh/ssh_host_ed25519_key" = {
           sopsFile = "${inputs.self}/secrets/${hostName}.yaml";
           format = "yaml";
@@ -84,19 +83,19 @@ flakeContext@{ inputs, ... }:
               sopsFile = "${inputs.self}/secrets/${hostName}.yaml";
               format = "yaml";
             };
-            # "cloudflare" = {
-            #   sopsFile = "${inputs.self}/secrets/${hostName}.yaml";
-            #   format = "yaml";
-            #   owner = config.users.users.cloudflared.name;
-            #   group = config.users.groups.cloudflared.name;
-            # };
+            "cloudflare" = {
+              sopsFile = "${inputs.self}/secrets/${hostName}.yaml";
+              format = "yaml";
+              owner = config.users.users.cloudflared.name;
+              group = config.users.groups.cloudflared.name;
+            };
           };
           systemd.tmpfiles.rules = [
             # f = create a file if it doesn't exist
             # 0400 = Read-only for owner, nothing for others
             # root = owner
             # root = group
-            "f /etc/${config.networking.hostName}boot.txt 0400 root root -"
+            "f /etc/${config.networking.hostName}-boot.txt 0400 root root -"
           ];
         }; 
       }; 

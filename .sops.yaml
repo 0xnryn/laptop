@@ -4,12 +4,12 @@ keys:
   - &serverboot age1ja9z6ckf9nn050u800yrz3m2rjvcfr77faymq88glmgnjjcfadtsgj60kc
 
 creation_rules:
-  - path_regex: secrets/laptop.yaml$
+  - path_regex: secrets/0xnryn-laptop.yaml$
     key_groups:
       - age:
           - *sudha
           - *laptopboot
-  - path_regex: secrets/server.yaml$
+  - path_regex: secrets/0xnryn-server.yaml$
     key_groups:
       - age:
           - *sudha

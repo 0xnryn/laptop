@@ -12,19 +12,19 @@ nix run nixpkgs#ssh-to-age -- -i /etc/ssh/ssh_host_ed25519_key.pub
 
 echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5..." | nix run nixpkgs#ssh-to-age
 
-nix run nixpkgs#sops -- secrets/laptop.yaml
+nix run nixpkgs#sops -- secrets/0xnryn-laptop.yaml
 
-nix run nixpkgs#sops -- updatekeys secrets/laptop.yaml
+nix run nixpkgs#sops -- updatekeys secrets/0xnryn-laptop.yaml
 
-sudo EDITOR=nano SOPS_AGE_KEY_FILE=/etc/laptopboot.txt nix run nixpkgs#sops -- secrets/laptop.yaml
+sudo EDITOR=nano SOPS_AGE_KEY_FILE=/etc/laptopboot.txt nix run nixpkgs#sops -- secrets/0xnryn-laptop.yaml
 
-sudo EDITOR=nano SOPS_AGE_KEY_FILE=/etc/laptopboot.txt nix run nixpkgs#sops -- updatekeys secrets/laptop.yaml
+sudo EDITOR=nano SOPS_AGE_KEY_FILE=/etc/laptopboot.txt nix run nixpkgs#sops -- updatekeys secrets/0xnryn-laptop.yaml
 
-sudo -E sops secrets/laptop.yaml
+sudo EDITOR=nano -E sops secrets/0xnryn-laptop.yaml
 
-sudo SOPS_AGE_KEY_FILE=/etc/laptopboot.txt sops secrets/laptop.yaml
+sudo EDITOR=nano SOPS_AGE_KEY_FILE=/etc/laptopboot.txt sops secrets/0xnryn-laptop.yaml
 
-env -u SOPS_AGE_KEY_FILE SOPS_AGE_KEY=$(nix run nixpkgs#age -- -d secrets/sudha.age 2>/dev/null | grep AGE-SECRET-KEY) nix run nixpkgs#sops -- secrets/laptop.yaml
+env -u SOPS_AGE_KEY_FILE SOPS_AGE_KEY=$(nix run nixpkgs#age -- -d secrets/sudha.age 2>/dev/null | grep AGE-SECRET-KEY) nix run nixpkgs#sops -- secrets/0xnryn-laptop.yaml
 
 
 # This creates a file named 'key.txt' containing your private key
@@ -60,3 +60,4 @@ sudo chown root:root /etc/serverboot.txt
 
 # 2. Set strict read-only permissions for root (and completely block everyone else)
 sudo chmod 400 /etc/serverboot.txt
+
