@@ -51,7 +51,7 @@
       cloudflared curl
       droidcam docker
       git gptfdisk
-      home-manager htop
+      home-manager htop helium helix
       jq
       mtr
       pciutils
@@ -62,10 +62,7 @@
       vim
       wget
       yggdrasil    
-      zenmonitor
-      pcsclite
-      opensc
-      nss.tools
+      zenmonitor 
     ];
     networking = {
       networkmanager.enable = true;
