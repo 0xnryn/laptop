@@ -1,7 +1,7 @@
 { inputs, lib, ... }:
 # ls -l /dev/disk/by-id/
 {
-  flake.nixosModules.server-hardware = { pkgs, config, modulesPath,... }: {
+  flake.nixosModules.nryn-server-hardware = { pkgs, config, modulesPath,... }: {
 
     imports = [ 
       inputs.disko.nixosModules.disko

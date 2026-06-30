@@ -1,6 +1,6 @@
 { inputs, lib, ... }:
 {
-  flake.nixosModules.laptop-hardware = { pkgs, config, modulesPath,... }: {
+  flake.nixosModules.nryn-laptop-hardware = { pkgs, config, modulesPath,... }: {
 
     imports = [ 
       inputs.disko.nixosModules.disko

@@ -5,11 +5,11 @@ flakeContext@{ inputs, ... }:
   ];
 
   configurations.nixos = {
-    "0xnryn-laptop" = {
+    "nryn-laptop" = {
       system = "x86_64-linux";
       module = { config, ... }:
       let
-        hostName = "0xnryn-laptop";
+        hostName = "nryn-laptop";
       in
       {
         networking = {
@@ -46,11 +46,11 @@ flakeContext@{ inputs, ... }:
     };
 
     configurations.nixos = {
-      "0xnryn-server" = {
+      "nryn-server" = {
         system = "x86_64-linux";
         module = { config, pkgs, ... }:
         let
-          hostName = "0xnryn-server";
+          hostName = "nryn-server";
         in
         {
           networking = {

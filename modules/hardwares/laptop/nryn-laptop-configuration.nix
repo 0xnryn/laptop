@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.nixosModules.laptop-configuration = { pkgs, ... }: 
+  flake.nixosModules.nryn-laptop-configuration = { pkgs, ... }: 
   {
     
     nix = {

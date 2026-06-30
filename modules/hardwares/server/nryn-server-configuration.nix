@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.nixosModules.server-configuration = { pkgs, config, lib, ... }: 
+  flake.nixosModules.nryn-server-configuration = { pkgs, config, lib, ... }: 
   {
     
     nix = {
